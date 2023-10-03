@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Contact } from './Contact';
-import { selectVisibleContacts } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/contacts/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contacts/operations';
+import { AddContactForm } from './AddContactForm';
+import { Filter } from './Filter';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -13,8 +15,10 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="container">
+      <AddContactForm />
       <h2>Contacts</h2>
+      <Filter />
       <ul>
         {contacts
           ? contacts.map(contact => (
@@ -27,6 +31,6 @@ export const ContactList = () => {
             ))
           : null}
       </ul>
-    </>
+    </div>
   );
 };

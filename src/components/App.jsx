@@ -1,15 +1,21 @@
 import React from 'react';
-import { ContactList } from './ContactList';
-import { Filter } from './Filter';
-import { AddContactForm } from './AddContactForm';
+import { Routes, Route } from 'react-router-dom';
+import SharedLayout from './SharedLayout';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('../pages/Home'));
+const Register = lazy(() => import('../pages/Register'));
+const Login = lazy(() => import('../pages/Login'));
 
 export const App = () => {
   return (
-    <div className="container">
-      <h1>Phonebook</h1>
-      <AddContactForm />
-      <Filter />
-      <ContactList />
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<Home />} />
+      </Route>
+    </Routes>
   );
 };
