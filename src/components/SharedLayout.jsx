@@ -9,17 +9,10 @@ const SharedLayout = () => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const email = useSelector(selectEmail);
   const token = useSelector(selectToken);
-  // const registerBtn = useRef();
-  // const loginBtn = useRef();
 
   const handleLogout = () => {
     dispatch(logOut(token));
   };
-
-  // const makeRegBtnActive = () => {
-  //   console.log(registerBtn.classList);
-  //   registerBtn.classList.add = 'active';
-  // };
 
   return (
     <>
@@ -30,7 +23,14 @@ const SharedLayout = () => {
               Home
             </Link>
           </div>
-          {isLoggedIn === false && (
+          {isLoggedIn ? (
+            <div className="login-nav">
+              <p className="nav-email">{email}</p>
+              <button className="logout-button button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
             <div className="login-nav">
               <Link className="link" to="/register">
                 Register
@@ -38,14 +38,6 @@ const SharedLayout = () => {
               <Link className="link" to="/login">
                 Login
               </Link>
-            </div>
-          )}
-          {isLoggedIn === true && (
-            <div className="login-nav">
-              <p className="nav-email">{email}</p>
-              <button className="logout-button button" onClick={handleLogout}>
-                Logout
-              </button>
             </div>
           )}
         </nav>

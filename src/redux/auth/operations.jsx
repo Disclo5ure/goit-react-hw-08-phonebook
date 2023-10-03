@@ -49,3 +49,17 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+export const refresh = createAsyncThunk('refresh', async (_, thunkAPI) => {
+  const token = thunkAPI.getState().auth.token;
+  if (!token) {
+    return thunkAPI.rejectWithValue('Token doesnt exist');
+  }
+  setToken(token);
+  try {
+    const response = await axios.get(`${baseURL}/current`);
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});

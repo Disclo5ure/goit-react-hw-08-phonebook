@@ -7,12 +7,13 @@ const Home = () => {
 
   return (
     <main className="main">
-      {isLoggedIn === false && (
+      {isLoggedIn ? (
+        <ContactList />
+      ) : (
         <h1 className="home-header">
           Welcome to the Contact book! Please log in or sign up
         </h1>
       )}
-      {isLoggedIn === true && <ContactList />}
     </main>
   );
 };
