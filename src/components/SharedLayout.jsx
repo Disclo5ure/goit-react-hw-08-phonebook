@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectEmail, selectLoggedIn, selectToken } from 'redux/auth/selectors';
 import { logOut } from 'redux/auth/operations';
